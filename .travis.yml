@@ -19,5 +19,11 @@ before_script:
 #  - cd backend && npm install
 #  - cd client && npm install
 script:
+  - echo "==================== Deploy Backend ===================="
   - sls -version
   - sls deploy -v
+  - echo "==================== Deploy Frontend ===================="
+  - cd ../client
+  - npm install
+  - npm run build
+
