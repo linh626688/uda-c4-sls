@@ -14,8 +14,8 @@ install:
 before_script:
   - npm install -g serverless@2.21.1
   - sls config credentials --provider aws --key $aws_access_key_id --secret aws_secret_access_key
-  - cd /backend && npm install
-  - cd /client && npm install
+  - cd backend && npm install
+  - cd client && npm install
 script:
   - sls -version
-  - cd /backend && sls deploy -v
+  - cd backend && sls deploy -v
