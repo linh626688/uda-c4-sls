@@ -20,4 +20,4 @@ before_script:
 #  - cd client && npm install
 script:
   - sls -version
-  - cd backend && sls deploy -v
+  - sls deploy -v
