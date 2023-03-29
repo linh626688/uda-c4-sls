@@ -21,7 +21,7 @@ before_script:
 script:
   - echo "==================== Deploy Backend ===================="
   - sls -version
-  - sls deploy -v
+#  - sls deploy -v
   - echo "==================== Deploy Frontend ===================="
   - cd ../client
   - npm install
