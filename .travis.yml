@@ -8,7 +8,6 @@ node_js:
 
 # Pre-testing installs
 install:
-  - ll
   - npm install -g serverless@2.21.1
   - cd backend && npm install
   - cd ../client && npm install
