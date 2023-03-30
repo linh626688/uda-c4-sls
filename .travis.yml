@@ -10,19 +10,15 @@ services:
 install:
   - npm install -g serverless@2.21.1
   - cd backend && npm install
-#  - cd ../client && npm install
 
 # Scripts to be run such as tests
 before_script:
-#  - cd ../backend && sls config credentials --provider aws --key $aws_access_key_id --secret $aws_secret_access_key
-  -  sls config credentials --provider aws --key $aws_access_key_id --secret $aws_secret_access_key
-#  - cd backend && npm install
-#  - cd client && npm install
+  - sls config credentials --provider aws --key $aws_access_key_id --secret $aws_secret_access_key
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 script:
   - echo "==================== Deploy Backend ===================="
   - sls -version
-#  - sls deploy -v
+  - sls deploy -v
   - echo "==================== Deploy Frontend ===================="
   - cd ../client
   - docker --version
