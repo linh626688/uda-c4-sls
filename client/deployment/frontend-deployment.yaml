@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: todo-client
+  name: todo-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: todo-client
+  template:
+    metadata:
+      labels:
+        service: todo-client
+        api: external        
+    spec:
+      containers:
+      - image: linh626688/todo-app-client
+        name: todo-client
+        imagePullPolicy: Always          
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"                
+      restartPolicy: Always

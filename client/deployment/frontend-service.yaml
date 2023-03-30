@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-client
+  labels:
+    service: todo-client
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    service: todo-client

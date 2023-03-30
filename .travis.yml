@@ -3,8 +3,8 @@ language: node_js
 node_js:
   - 12
 
-#services:
-#  - docker
+services:
+  - docker
 
 # Pre-testing installs
 install:
@@ -18,12 +18,14 @@ before_script:
   -  sls config credentials --provider aws --key $aws_access_key_id --secret $aws_secret_access_key
 #  - cd backend && npm install
 #  - cd client && npm install
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 script:
   - echo "==================== Deploy Backend ===================="
   - sls -version
 #  - sls deploy -v
   - echo "==================== Deploy Frontend ===================="
   - cd ../client
-  - npm install
-  - npm run build
-
+  - docker --version
+  - docker build -t todo-app-client .
+  - docker tag todo-app-client linh626688/todo-app-client:latest
+  - docker push linh626688/todo-app-client:latest
