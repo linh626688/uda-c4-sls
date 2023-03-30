@@ -1,4 +1,4 @@
-import { TodosAccess } from './todosAcess'
+import { TodosAccess } from './todosAccess'
 // import { AttachmentUtils } from './attachmentUtils';
 import { TodoItem } from '../models/TodoItem'
 import { CreateTodoRequest } from '../requests/CreateTodoRequest'
@@ -35,10 +35,14 @@ export async function updateTodo(userId: string, todoId: string, item: UpdateTod
   todoAccess.updateTodo(userId, todoId, item)
 }
 
+export async function removeAttachment(userId: string, todoId: string, imageId: string) {
+  todoAccess.removeAttachment(userId, todoId, imageId)
+}
+
 export async function deleteTodo(userId: string, todoId: string,) {
   todoAccess.deleteTodo(userId, todoId)
 }
 
-export async function attachmenImage(userId: string, todoId: string,) {
-  return todoAccess.attachmenImage(userId, todoId)
+export async function attachmentImage(userId: string, todoId: string,) {
+  return todoAccess.attachmentImage(userId, todoId)
 }

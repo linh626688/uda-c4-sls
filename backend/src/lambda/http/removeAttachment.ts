@@ -5,21 +5,19 @@ import * as middy from 'middy'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 
 import { getUserId } from '../utils'
-import { attachmentImage } from '../../helpers/todos'
+import { removeAttachment } from '../../helpers/todos'
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    // TODO: Return a presigned URL to upload a file for a TODO item with the provided id
-    const userId = getUserId(event)
     const todoId = event.pathParameters.todoId
-    const uploadUrl = await attachmentImage(userId, todoId)
+    const imageId = event.pathParameters.imageId
+    const userId = getUserId(event)
+    await removeAttachment(userId, todoId, imageId)
+
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        uploadUrl
-      })
+      body: null
     }
-
   }
 )
 
