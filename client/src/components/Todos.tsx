@@ -79,7 +79,8 @@ export class Todos extends React.PureComponent<TodosProps, TodosState> {
     const todos = await getTodos(this.props.auth.getIdToken(), filter)
     this.setState({
       todos,
-      loadingTodos: false
+      loadingTodos: false,
+      filterStatus: filter
     })
   }
 

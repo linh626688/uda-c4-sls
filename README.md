@@ -37,8 +37,8 @@ You might also store an id of a user who created a TODO item.
   CICD with Travis-CI for backend side
   
 
-# Cover with project rubrics Capstone Project
-  * (Option 1): Container
-  * (Option 2): Functionality
-  * (Option 2):Best practices
-  * (Option 2):Architecture
+# New Function 
+
+  * Filter todo task by status DONE/TODO/ALL
+  * Remove image for each TODO task 
+  ![Alt text](images/remove_image.png?raw=true "Image 3")
