@@ -1,4 +1,3 @@
-# Serverless TODO app
 # Project 5 final course Cloud Developer 
 
 Base on project 4 (Serverless TODO app), continue develop some feature
@@ -12,18 +11,6 @@ To implement this project, you need to implement a simple TODO application using
 
 This application will allow creating/removing/updating/fetching TODO items. Each TODO item can optionally have an attachment image. Each user only has access to TODO items that he/she has created.
 
-# TODO items
-
-The application should store TODO items, and each TODO item contains the following fields:
-
-* `todoId` (string) - a unique id for an item
-* `createdAt` (string) - date and time when an item was created
-* `name` (string) - name of a TODO item (e.g. "Change a light bulb")
-* `dueDate` (string) - date and time by which an item should be completed
-* `done` (boolean) - true if an item was completed, false otherwise
-* `attachmentUrl` (string) (optional) - a URL pointing to an image attached to a TODO item
-
-You might also store an id of a user who created a TODO item.
 
 ## Setup
 * nodejs >=12.
@@ -40,5 +27,9 @@ You might also store an id of a user who created a TODO item.
 # New Function 
 
   * Filter todo task by status DONE/TODO/ALL
+
+  ![Alt text](images/filter_task_by status.png?raw=true "Image 2")
+
   * Remove image for each TODO task 
+
   ![Alt text](images/remove_image.png?raw=true "Image 3")
