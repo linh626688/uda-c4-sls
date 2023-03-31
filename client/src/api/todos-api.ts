@@ -1,17 +1,22 @@
 import { apiEndpoint } from '../config'
-import { Todo } from '../types/Todo';
-import { CreateTodoRequest } from '../types/CreateTodoRequest';
+import { Todo } from '../types/Todo'
+import { CreateTodoRequest } from '../types/CreateTodoRequest'
 import Axios from 'axios'
-import { UpdateTodoRequest } from '../types/UpdateTodoRequest';
+import { UpdateTodoRequest } from '../types/UpdateTodoRequest'
 
-export async function getTodos(idToken: string): Promise<Todo[]> {
+export const FILTER = {
+  ALL: 'ALL',
+  DONE: 'DONE',
+  TODO: 'TODO'
+}
+
+export async function getTodos(idToken: string, filter: string): Promise<Todo[]> {
   console.log('Fetching todos')
-
-  const response = await Axios.get(`${apiEndpoint}/todos`, {
+  const response = await Axios.get(`${apiEndpoint}/todos?filter=${filter}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${idToken}`
-    },
+    }
   })
   console.log('Todos:', response.data)
   return response.data.items
@@ -21,7 +26,7 @@ export async function createTodo(
   idToken: string,
   newTodo: CreateTodoRequest
 ): Promise<Todo> {
-  const response = await Axios.post(`${apiEndpoint}/todos`,  JSON.stringify(newTodo), {
+  const response = await Axios.post(`${apiEndpoint}/todos`, JSON.stringify(newTodo), {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${idToken}`
@@ -55,6 +60,19 @@ export async function deleteTodo(
   })
 }
 
+export async function deleteAttachment(
+  idToken: string,
+  todoId: string,
+  imageId: string
+): Promise<void> {
+  await Axios.post(`${apiEndpoint}/todos/${todoId}/attachment/${imageId}`, '', {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${idToken}`
+    }
+  })
+}
+
 export async function getUploadUrl(
   idToken: string,
   todoId: string
@@ -65,7 +83,7 @@ export async function getUploadUrl(
       'Authorization': `Bearer ${idToken}`
     }
   })
-  
+
   return response.data.uploadUrl
 }
 

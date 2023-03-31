@@ -14,3 +14,8 @@ export function getUserId(event: APIGatewayProxyEvent): string {
 
   return parseUserId(jwtToken)
 }
+export const FILTER = {
+  ALL: 'ALL',
+  DONE: 'DONE',
+  TODO: 'TODO'
+}

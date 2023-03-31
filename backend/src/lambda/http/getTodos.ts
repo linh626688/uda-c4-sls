@@ -15,10 +15,13 @@ const logger = createLogger('lambdaGetUser')
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     logger.info('event: ' + JSON.stringify(event));
+    const {filter} = event.queryStringParameters;
+    logger.info('querystring: ' + JSON.stringify(filter));
+
     const userId = getUserId(event)
     logger.info('userId: ' + userId);
 
-    const result = await getAllTodosByUserId(userId)
+    const result = await getAllTodosByUserId(userId, filter)
     return {
       statusCode: 200,
       body: JSON.stringify({
